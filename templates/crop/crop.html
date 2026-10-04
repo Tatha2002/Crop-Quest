@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="position-relative d-flex align-items-center justify-content-center py-5" style="min-height: 100vh;">
+    <img src="{% static 'images/bg.jpg' %}" class="position-absolute w-100 h-100" style="top: 0; left: 0; object-fit: cover;" alt="Agriculture">
+    
+    <div class="container position-relative">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-md-11">
+                <div class="card shadow-lg border-0">
+                    <div class="card-body p-4">
+
+                        <h1 class="text-center text-success font-weight-bold mb-4">Crop Recommendation</h1>
+
+                        <form id="cropRecommendationForm" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+
+                            <div class="form-row mb-3">
+
+                                <!-- nitrogen -->
+                                <div class="col-md-4 mb-3">
+                                    <label for="nitrogen" class="font-weight-bold">Nitrogen</label>
+                                    <input type="number" id="nitrogen" name="nitrogen" placeholder="Enter Nitrogen" class="form-control" required step="0.01">
+                                    <div id="nitrogen_error" class="text-danger small mt-1" style="font-size: 14px;"></div>
+                                </div>
+
+                                <!-- Phosphorus -->
+                                <div class="col-md-4 mb-3">
+                                    <label for="phosphorus" class="font-weight-bold">Phosphorus</label>
+                                    <input type="number" id="phosphorus" name="phosphorus" placeholder="Enter Phosphorus" class="form-control" required step="0.01">
+                                    <div id="phosphorus_error" class="text-danger small mt-1" style="font-size: 14px;"></div>                               
+                                </div>
+
+                                <!-- Potassium -->
+                                <div class="col-md-4 mb-3">
+                                    <label for="potassium" class="font-weight-bold">Potassium</label>
+                                    <input type="number" id="potassium" name="potassium" placeholder="Enter Potassium" class="form-control" required step="0.01">
+                                    <div id="potassium_error" class="text-danger small mt-1" style="font-size: 14px;"></div>
+                                </div>
+                            </div>
+
+                            <!-- Temperature -->
+                            <div class="form-row mb-3">
+                                <div class="col-md-4 mb-3">
+                                    <label for="temperature" class="font-weight-bold">Temperature</label>
+                                    <input type="number" step="0.01" id="temperature" name="temperature" placeholder="Enter Temperature in °C" class="form-control" required>
+                                    <div id="temperature_error" class="text-danger small mt-1" style="font-size: 14px;"></div>
+                                </div>
+
+                                <!-- Humidity -->
+                                <div class="col-md-4 mb-3">
+                                    <label for="humidity" class="font-weight-bold">Humidity</label>
+                                    <input type="number" step="0.01" id="humidity" name="humidity" placeholder="Enter Humidity in %" class="form-control" required>
+                                    <div id="humidity_error" class="text-danger small mt-1" style="font-size: 14px;"></div>
+                                </div>
+
+                                <!-- pH -->
+                                <div class="col-md-4 mb-3">
+                                    <label for="ph" class="font-weight-bold">pH</label>
+                                    <input type="number" step="0.01" id="ph" name="ph" placeholder="Enter pH value" class="form-control" required>
+                                    <div id="ph_error" class="text-danger small mt-1" style="font-size: 14px;"></div>
+                                </div>
+                            </div>
+
+                            <!-- Rainfall -->
+                            <div class="form-row mb-3">
+                                <div class="col-md-4 mb-3">
+                                    <label for="rainfall" class="font-weight-bold">Rainfall</label>
+                                    <input type="number" step="0.01" id="rainfall" name="rainfall" placeholder="Enter Rainfall in mm" class="form-control" required>
+                                    <div id="rainfall_error" class="text-danger small mt-1" style="font-size: 14px;"></div>
+                                </div>
+                            </div>
+
+                            <div class="text-center mt-2">
+                                <button type="submit" id="getRecommendationBtn" class="btn btn-success btn-lg">Get Recommendation</button>
+                            </div>
+
+                        </form>
+
+                        <!-- Result card -->
+
+                        <div id="result-card" class="card mx-auto mt-4 shadow" style="width: 360px; display: none; border-radius: 12px; overflow: hidden;">
+                            <img id="crop-image" src="" alt="Recommended Crop" style="width: 100%; height: 270px; object-fit: cover;">
+
+                            <div class="card-body text-center bg-dark text-white">
+                                <h4 class="fw-bold">Recommended Crop for<br> Cultivation:</h4>
+                                <h3 id="crop-name"class="text-success fw-bold mt-3"></h3>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+

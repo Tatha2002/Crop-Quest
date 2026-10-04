@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- ================= HERO SECTION ================= -->
+
+<section id="home" class="position-relative text-white overflow-hidden">
+    <img src="{% static 'images/3.jpg' %}" class="position-absolute w-100 h-100" style="top: 0; left: 0; object-fit: cover;" alt="Agriculture">
+    <div class="position-absolute w-100 h-100 bg-dark" style="top: 0; left: 0; opacity: 0.5;"></div>
+
+    <div class="container position-relative d-flex flex-column justify-content-center align-items-center text-center" style="min-height: 100vh;">
+        <h1 class="display-1 font-weight-normal">CROPQUEST</h1>
+        <p class="lead mt-4">Optimize Your Farming Strategy With Data-Driven Insights.</p>
+    </div>
+</section>
+
+<!-- ================= OUR SERVICES ================= -->
+
+<section id="services" class="d-flex align-items-center py-5" style="min-height: 100vh;">
+    <div class="container">
+        <h2 class="text-center mb-5">Our Services</h2>
+        <div class="row justify-content-center">
+
+            <!-- Crop Recommendation -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <img src="{% static 'images/s3.jpg' %}" class="card-img-top" alt="Crop Recommendation">
+                    <div class="card-body text-center d-flex flex-column">
+                        <h4 class="card-title">Crop Recommendation</h4>
+                        <p class="card-text">Recommendation about the type of crops to be cultivated which is best suited for the respective conditions.</p>
+                        <a href="{% url 'crop_recommendation' %}" class="btn btn-success mt-auto align-self-center">Explore</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Crop Yield Prediction -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <img src="{% static 'images/s2.jpg' %}" class="card-img-top" alt="Crop Yield Prediction">
+                    <div class="card-body text-center d-flex flex-column">
+                        <h4 class="card-title">Crop Yield Prediction</h4>
+                        <p class="card-text">Prediction about crop yield based on factors such as soil type, weather conditions, and crop variety conditions.</p>
+                        <a href="{% url 'yield_display' %}" class="btn btn-success mt-auto align-self-center">Explore</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Disease Prediction -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <img src="{% static 'images/fer_home.jpg' %}" class="card-img-top" alt="Fertilizer Recommendation">
+                    <div class="card-body text-center d-flex flex-column">
+                        <h4 class="card-title">Disease Prediction</h4>
+                        <p class="card-text">Offers tailored fertilizer suggestions based on soil, weather, and crop type for optimal growth.</p>
+                        <a href="{% url 'plant_disease_prediction' %}" class="btn btn-success mt-auto align-self-center">Explore</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ================= ABOUT US ================= -->
+
+<section id="about" class="bg-light d-flex align-items-center py-5" style="min-height: 100vh;">
+    <div class="container">
+        <h2 class="text-center mb-5">About Us</h2>
+
+        <div class="row align-items-center">
+
+            <!-- Image -->
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <img src="{% static 'images/about.jpg' %}" class="img-fluid rounded shadow" alt="About CropQuest">
+            </div>
+
+            <!-- Content -->
+            <div class="col-lg-6">
+                <h3 class="font-weight-bold mb-4">Enhancing Agriculture, Enriching Lives</h3>
+
+                <p class="text-muted">
+                    CropQuest is an intelligent agriculture platform designed
+                    to help farmers make better decisions using machine learning
+                    and data-driven insights.
+                </p>
+
+                <p class="text-muted">
+                    Our system analyzes important agricultural parameters and
+                    provides suitable crop recommendations, yield predictions,
+                    and fertilizer suggestions to improve productivity and
+                    maximize farmers' profits.
+                </p>
+
+                <p class="text-muted">
+                    By combining agriculture with modern technology, CropQuest
+                    aims to make farming more efficient, informed, and
+                    sustainable.
+                </p>
+
+                <a href="#" class="btn btn-success mt-3">Learn More</a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="bg-dark text-white text-center py-4">
+    <div class="container">
+        <h5>CropQuest</h5>
+        <p class="mb-0">Smart farming through data-driven insights.</p>
+        <p class="mt-2 mb-0">&copy; 2026 CropQuest. All Rights Reserved.</p>
+    </div>
+</footer>
+
+{% endblock %}
+    
+

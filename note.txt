@@ -1,0 +1,81 @@
+# PROJECT EXECUTION NOTES
+
+This project uses Django, Celery, Redis, and Docker.
+
+IMPORTANT:
+Make sure Docker Desktop is running before starting the project.
+
+1. START REDIS
+
+---
+
+Run:
+
+```
+docker start redis-server
+```
+
+If the Redis container does not exist:
+
+```
+docker run -d --name redis-server -p 6379:6379 redis
+```
+
+## 2. START CELERY
+
+Open a new terminal and activate the virtual environment:
+
+```
+venv\Scripts\activate
+```
+
+Then run:
+
+```
+celery -A <project_name> worker --pool=solo -l info
+```
+
+Replace `<project_name>` with the Django project name.
+
+Keep this terminal running.
+
+3. START DJANGO
+
+---
+
+Open another terminal:
+
+```
+venv\Scripts\activate
+```
+
+Then run:
+
+```
+python manage.py runserver
+```
+
+## 4. REQUIRED SERVICES
+
+Keep these running:
+
+* Redis → Docker
+* Celery → Celery Worker
+* Django → Development Server
+
+Django will normally run at:
+
+```
+http://127.0.0.1:8000/
+```
+
+## QUICK START
+
+Terminal 1:
+docker start redis-server
+
+Terminal 2:
+celery -A <project_name> worker --pool=solo -l info
+
+Terminal 3:
+python manage.py runserver

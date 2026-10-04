@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="position-relative d-flex align-items-center justify-content-center py-5" style="min-height: 100vh;">
+
+    <!-- Background Image -->
+    <img src="{% static 'images/disease_bg.jpeg' %}" class="position-absolute w-100 h-100" style="top: 0; left: 0; object-fit: cover;" alt="Agriculture Background">
+
+    <!-- Main Container -->
+    <div class="container position-relative">
+        <div class="row justify-content-center">
+            <div class="col-lg-7 col-md-9 col-sm-11">
+                <!-- Main Card -->
+                <div class="card shadow-lg border-0">
+                    <div class="card-body p-4 p-md-5">
+                        <!-- Heading -->
+                        <div class="text-center mb-4">
+                            <h2 class="font-weight-bold text-success">Plant Disease Prediction</h2>
+                            <p class="text-muted mb-0">
+                                Upload an image of your plant leaf to identify
+                                possible diseases and get a recommended remedy.
+                            </p>
+                        </div>
+
+                        <!-- Upload Form -->
+                        <form method="POST" id="uploadForm" enctype="multipart/form-data">
+                            {% csrf_token %}
+
+                            <!-- Image Upload -->
+                            <div class="form-group">
+                                <label for="plant_image" class="font-weight-bold">Upload Plant Image</label>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="plant_image" id="plant_image" accept="image/*" required>
+                                    <label class="custom-file-label" for="plant_image">Choose plant image</label>
+                                </div>
+                                <small class="form-text text-muted">Supported formats: JPG, JPEG, PNG</small>
+                            </div>
+
+                            <!-- Predict Button -->
+                            <div class="text-center">
+                                <button type="submit" id="diseasePredictionBtn" class="btn btn-success btn-lg px-5">Predict Disease</button>
+                            </div>
+                        </form>
+
+                        <!-- Image display -->
+                        <div id="uploadedImageSection" class="text-center mt-4" style="display: none;">
+                            <hr class="my-4">
+                            <h5 class="font-weight-bold text-success mb-3">Uploaded Plant Image</h5>
+                            <img id="uploadedDiseaseImage" src="" class="img-fluid rounded shadow" style="max-height: 350px;" alt="Uploaded Plant Image">
+                        </div>
+
+
+                        <!-- Prediction Result -->
+                        <div id="resultSection" class="card border-success mt-4" style="display: none;">
+                            <div class="card-body text-center">
+                                <h5 class="font-weight-bold text-success">Prediction Result</h5>
+                                <hr>
+                                <p id="predictionStatus" class="font-weight-bold"></p>
+                                <p class="mb-0">
+                                    <strong>Disease:</strong>
+                                    <span id="diseaseResult" class="text-danger font-weight-bold"></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

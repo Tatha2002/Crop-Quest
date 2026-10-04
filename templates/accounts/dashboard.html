@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container mt-5" style="padding-top: 40px;">
+
+    <!-- Welcome Section -->
+    <div class="mb-4">
+        <h2>Welcome, {{ user.email }}</h2>
+        <p class="text-muted mb-0">Here's an overview of your CropQuest activity.</p>
+    </div>
+
+
+    <!-- Statistics Cards -->
+    <div class="row g-4 mb-4">
+        <!-- Total Predictions -->
+        <div class="col-md-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h6 class="text-muted">Total Predictions</h6>
+                    <h2 class="mt-2">{{ total_predictions }}</h2>
+                    <p class="mb-0 text-muted">All your predictions</p>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Crop Recommendations -->
+        <div class="col-md-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h6 class="text-muted">Crop Predictions</h6>
+                    <h2 class="mt-2">{{ crop_count }}</h2>
+                    <p class="mb-0 text-muted">Crop recommendations made</p>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Yield Predictions -->
+        <div class="col-md-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h6 class="text-muted">Yield Predictions</h6>
+                    <h2 class="mt-2">{{ yield_count }}</h2>
+                    <p class="mb-0 text-muted">Yield predictions made</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Disease Predictions --> 
+        <div class="col-md-3"> 
+            <div class="card shadow-sm h-100"> 
+                <div class="card-body"> 
+                    <h6 class="text-muted">Disease Predictions</h6> 
+                    <h2 class="mt-2">{{ disease_count }}</h2> 
+                    <p class="mb-0 text-muted">Disease predictions made</p> 
+                </div> 
+            </div> 
+        </div>
+    </div>
+
+
+    <!-- Recent Activity -->
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Recent Activity</h4>
+        </div>
+
+        <div class="card-body">
+            {% if recent_activities %}
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Type</th>
+                                <th>Result</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for activity in recent_activities %}
+                                <tr>
+                                    <td>{{ activity.date|date:"d M Y" }}</td>
+                                    <td>{{ activity.type }}</td>
+                                    <td>
+                                        <strong>{{ activity.result }}</strong>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+            {% else %}
+                <div class="text-center py-4">
+                    <p class="text-muted mb-0">You haven't made any predictions yet.</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Account Information -->
+    <div class="card shadow-sm mt-4 mb-5">
+        <div class="card-header">
+            <h5 class="mb-0">Account Information</h5>
+        </div>
+
+        <div class="card-body">
+            <p>
+                <strong>Email:</strong>
+                {{ user.email }}
+            </p>
+
+            <p>
+                <strong>Phone:</strong>
+                {{ user.phone }}
+            </p>
+
+            <p class="mb-0">
+                <strong>Role:</strong>
+                {{ user.role }}
+            </p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
